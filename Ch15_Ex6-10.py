@@ -88,8 +88,8 @@ die_2 = Die()
 dice = [die_1, die_2]
 n_dice = len(dice)
 
-results = [sum(die.roll() for die in dice) for _ in range(1000)]
-max_result = sum(die.num_sides for die in dice) + 1
+results = [die_1.roll() * die_2.roll() for _ in range(1000)]
+max_result = die_1.roll() * die_2.roll() + 1
 
 frequencies = [results.count(value) for value in range(n_dice, max_result)]
 
