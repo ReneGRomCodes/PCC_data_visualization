@@ -51,7 +51,7 @@ hist.x_title = "Result"
 hist.y_title = "Frequency of Result"
 
 hist.add("D8 + D8", frequencies)
-#hist.render_to_file('exercise_15-7.svg')
+hist.render_to_file('exercise_15-7.svg')
 
 
 # Exercise 15-8 Three Dice: If you roll three D6 dice, the smallest number you can roll is 3 and the largest 18. Create
@@ -76,7 +76,7 @@ hist.x_title = "Result"
 hist.y_title = "Frequency of Result"
 
 hist.add("D6 + D6 + D6", frequencies)
-#hist.render_to_file('exercise_15-8.svg')
+hist.render_to_file('exercise_15-8.svg')
 
 
 # Exercise 15-9 Multiplication: When you roll two dice, you usually add the two number together to get the result.
@@ -100,7 +100,7 @@ hist.x_title = "Result"
 hist.y_title = "Frequency of Result"
 
 hist.add("D6 * D6", frequencies)
-#hist.render_to_file('exercise_15-9.svg')
+hist.render_to_file('exercise_15-9.svg')
 
 
 # Exercise 15-10 Practicing with Both Libraries: Try using 'matplotplib' to make a die-rolling visualization and pygal
@@ -126,3 +126,16 @@ plt.xlabel("Result")
 plt.ylabel("Frequency")
 
 plt.show()
+
+
+# Random walk visualization using 'pygal':
+rw = RandomWalk()
+rw.fill_walk()
+
+rw_visual = pygal.XY()
+
+rw_visual.title = "Random Walk"
+rw_values = list(zip(rw.x_values, rw.y_values))
+rw_visual.add("Random Walk", rw_values)
+
+rw_visual.render_to_file('exercise_15-10.svg')
