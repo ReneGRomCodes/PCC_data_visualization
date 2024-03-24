@@ -3,9 +3,10 @@
 # try replacing the other for-loops with comprehensions as well.
 # MADE ADDITIONAL CHANGES TO MAKE THE PROGRAM MORE FLEXIBLE.
 
-
+import matplotlib.pyplot as plt
 import pygal
 from die import Die
+from random_walk import RandomWalk
 
 
 die_1 = Die()
@@ -39,7 +40,7 @@ die_2 = Die(8)
 dice = [die_1, die_2]
 n_dice = len(dice)
 
-results = [sum(die.roll() for die in dice) for _ in range(1000)]  # My machine starts sweating at 10,000,000.
+results = [sum(die.roll() for die in dice) for _ in range(1000)]
 max_result = sum(die.num_sides for die in dice) + 1
 
 frequencies = [results.count(value) for value in range(n_dice, max_result)]
@@ -50,7 +51,7 @@ hist.x_title = "Result"
 hist.y_title = "Frequency of Result"
 
 hist.add("D8 + D8", frequencies)
-hist.render_to_file('exercise_15-7.svg')
+#hist.render_to_file('exercise_15-7.svg')
 
 
 # Exercise 15-8 Three Dice: If you roll three D6 dice, the smallest number you can roll is 3 and the largest 18. Create
@@ -75,7 +76,7 @@ hist.x_title = "Result"
 hist.y_title = "Frequency of Result"
 
 hist.add("D6 + D6 + D6", frequencies)
-hist.render_to_file('exercise_15-8.svg')
+#hist.render_to_file('exercise_15-8.svg')
 
 
 # Exercise 15-9 Multiplication: When you roll two dice, you usually add the two number together to get the result.
@@ -98,9 +99,30 @@ hist.x_labels = [x + n_dice for x in range(max_result - n_dice)]
 hist.x_title = "Result"
 hist.y_title = "Frequency of Result"
 
-hist.add("D6 + D6", frequencies)
-hist.render_to_file('exercise_15-9.svg')
+hist.add("D6 * D6", frequencies)
+#hist.render_to_file('exercise_15-9.svg')
 
 
 # Exercise 15-10 Practicing with Both Libraries: Try using 'matplotplib' to make a die-rolling visualization and pygal
 # to make a visualization for a random walk.
+
+
+# Die rolling visualization using 'matplotlib':
+die_1 = Die()
+die_2 = Die()
+
+dice = [die_1, die_2]
+n_dice = len(dice)
+
+results = [sum(die.roll() for die in dice) for _ in range(1000)]
+max_result = sum(die.num_sides for die in dice) + 1
+
+frequencies = [results.count(value) for value in range(n_dice, max_result)]
+x_labels = [x + n_dice for x in range(max_result - n_dice)]
+
+plt.bar(x_labels, frequencies)
+plt.title("D6 + D6 Result Frequency")
+plt.xlabel("Result")
+plt.ylabel("Frequency")
+
+plt.show()
