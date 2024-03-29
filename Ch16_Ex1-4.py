@@ -56,7 +56,6 @@ plt.plot(dates_s, highs_s, c='red', alpha=0.5)
 plt.plot(dates_s, lows_s, c="blue", alpha=0.5)
 plt.fill_between(dates_s, highs_s, lows_s, facecolor='blue', alpha=0.5)
 
-
 plt.title("Daily high and low temperatures - 2014\nComparison between Sitka and Death Valley", fontsize=24)
 plt.xlabel("", fontsize=16)
 fig.autofmt_xdate()
@@ -94,7 +93,53 @@ plt.ylabel("Precipitation (In)", fontsize=16)
 plt.tick_params(axis='both', which='major', labelsize=16)
 
 
-plt.show()
-
-
 # Exercise 16-4 Explore: Generate a few more visualizations that examine any other weather aspect for any location.
+
+
+filename = "death_valley_2014.csv"
+with open(filename) as f:
+    reader = csv.reader(f)
+    header_row = next(reader)
+
+    dates_dv, rain_dv = [], []
+    for row in reader:
+        try:
+            current_date = datetime.strptime(row[0], "%Y-%m-%d")
+            rain = row[19]
+        except ValueError:
+            print(current_date, "missing data")
+        else:
+            dates_dv.append(current_date)
+            rain_dv.append(rain)
+
+
+filename = "sitka_weather_2014.csv"
+with open(filename) as f:
+    reader = csv.reader(f)
+    header_row = next(reader)
+
+    dates_s, rain_s = [], []
+    for row in reader:
+        try:
+            current_date = datetime.strptime(row[0], "%Y-%m-%d")
+            rain = row[19]
+        except ValueError:
+            print(current_date, "missing data")
+        else:
+            dates_s.append(current_date)
+            rain_s.append(rain)
+
+
+fig = plt.figure(dpi=128, figsize=(10, 6))
+plt.plot(dates_dv, rain_dv, c='red')
+plt.plot(dates_s, rain_s, c='blue')
+
+plt.title("Rainfall Comparison - 2014\nSitka and Death Valley", fontsize=24)
+plt.xlabel("", fontsize=16)
+fig.autofmt_xdate()
+plt.ylabel("Precipitation (In)", fontsize=16)
+plt.tick_params(axis="x", which='major', labelsize=16)
+plt.tick_params(axis="y", which='major', labelsize=5)
+
+
+plt.show()
