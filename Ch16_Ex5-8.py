@@ -75,3 +75,29 @@ wm.render_to_file("access_to_electricity.svg")
 # Exercise 16-8 Testing the 'country_codes' Module: When we wrote the 'country_codes' module, we used 'print' statements
 # to check whether the 'get_country_code()' function worked. Write a proper test for this function using what you
 # learned in chapter 11.
+
+
+import unittest
+
+
+class CountryCodeTestCase(unittest.TestCase):
+    """Test for 'get_country_code()'."""
+
+    def test_country_code(self):
+        """Normal country code retrieval."""
+        country_code = get_country_code("Greece")
+        self.assertEqual(country_code, "gr")
+
+    def test_country_code_special(self):
+        """Country code retrieval for special cases."""
+        country_code = get_country_code("Bolivia")
+        self.assertEqual(country_code, "bo")
+
+    def test_county_code_error(self):
+        """Country code retrieval for non-existing countries."""
+        country_code = get_country_code("Neverland")
+        self.assertEqual(country_code, None)
+
+
+if __name__ == "__main__":
+    unittest.main()
