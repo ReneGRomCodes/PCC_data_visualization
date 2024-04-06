@@ -93,4 +93,4 @@ if language:
 # 'status_code' is 200. figure out some other assertions you can make - for example, that the number of items returned
 # is expected and that the total number of repositories is greater than a certain amount.
 
-# SOLUTION TO THIS EXERCISE IN 'TEST_PYTHON_REPOS.PY'.
+# SOLUTION TO THIS EXERCISE IN 'TEST_PYTHON_REPOS.PY' AND 'PYTHON_REPOS.PY'.
